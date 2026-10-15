@@ -1,0 +1,507 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Contact Us | School System</title>
+
+    <style>
+        /* GENERAL STYLES */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --green: #10a37f;
+            --dark-green: #0d896b;
+            --text: #202123;
+            --muted: #6b7280;
+            --border: #e5e7eb;
+            --light: #f7f7f8;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #ffffff;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* NAVIGATION BAR */
+        .navbar {
+            min-height: 76px;
+            padding: 16px 7%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            border-bottom: 1px solid var(--border);
+            background: #ffffff;
+        }
+
+        .logo {
+            color: var(--text);
+            font-size: 22px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .logo span {
+            color: var(--green);
+        }
+
+        .navbar nav {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .navbar nav a {
+            color: #555963;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+
+        .navbar nav a:hover,
+        .navbar nav a.active {
+            color: var(--green);
+        }
+
+        .login-btn {
+            padding: 9px 19px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text);
+            font-size: 14px;
+        }
+
+        .login-btn:hover {
+            background: var(--light);
+        }
+
+        /* MAIN SECTION */
+        .contact-container {
+            width: min(1100px, 86%);
+            margin: auto;
+            padding: 70px 0 85px;
+        }
+
+        .intro {
+            max-width: 680px;
+            margin: 0 auto 45px;
+            text-align: center;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 7px 13px;
+            margin-bottom: 17px;
+            border-radius: 30px;
+            background: #eaf7f2;
+            color: var(--dark-green);
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+        }
+
+        .intro h1 {
+            margin-bottom: 17px;
+            font-size: clamp(34px, 5vw, 52px);
+            line-height: 1.15;
+            letter-spacing: -1.5px;
+        }
+
+        .intro h1 span {
+            color: var(--green);
+        }
+
+        .intro p {
+            max-width: 560px;
+            margin: auto;
+            color: var(--muted);
+            font-size: 16px;
+        }
+
+        /* CONTACT LAYOUT */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 0.85fr 1.4fr;
+            gap: 35px;
+            align-items: start;
+        }
+
+        .contact-info {
+            padding: 30px 25px;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            background: var(--light);
+        }
+
+        .contact-info h2,
+        .contact-form h2 {
+            margin-bottom: 8px;
+            font-size: 23px;
+        }
+
+        .info-description,
+        .form-description {
+            margin-bottom: 28px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .info-icon {
+            width: 44px;
+            height: 44px;
+            flex-shrink: 0;
+            display: grid;
+            place-items: center;
+            border: 1px solid #dcefe8;
+            border-radius: 12px;
+            background: white;
+            color: var(--green);
+            font-size: 20px;
+        }
+
+        .info-item h3 {
+            font-size: 14px;
+            margin-bottom: 3px;
+        }
+
+        .info-item p {
+            color: var(--muted);
+            font-size: 13px;
+            overflow-wrap: anywhere;
+        }
+
+        .help-note {
+            padding: 18px;
+            border-radius: 12px;
+            background: #eaf7f2;
+            color: #225c4b;
+        }
+
+        .help-note strong {
+            font-size: 14px;
+        }
+
+        .help-note p {
+            margin-top: 5px;
+            font-size: 13px;
+        }
+
+        /* CONTACT FORM */
+        .contact-form {
+            padding: 32px;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            background: #ffffff;
+            box-shadow: 0 8px 35px rgba(0, 0, 0, 0.035);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 21px;
+        }
+
+        .form-group label {
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid #dfe1e5;
+            border-radius: 10px;
+            outline: none;
+            background: white;
+            color: var(--text);
+            font: inherit;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #9ca3af;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--green);
+            box-shadow: 0 0 0 3px rgba(16, 163, 127, 0.12);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 130px;
+        }
+
+        .send-btn {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 10px;
+            background: var(--green);
+            color: white;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .send-btn:hover {
+            background: var(--dark-green);
+            transform: translateY(-1px);
+        }
+
+        .send-btn span {
+            font-size: 20px;
+        }
+
+        .privacy-note {
+            margin-top: 15px;
+            color: var(--muted);
+            text-align: center;
+            font-size: 12px;
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 25px 7%;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            text-align: center;
+            font-size: 13px;
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 800px) {
+            .navbar {
+                flex-wrap: wrap;
+                padding: 16px 5%;
+            }
+
+            .navbar nav {
+                order: 3;
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 16px;
+            }
+
+            .contact-container {
+                width: 90%;
+                padding: 45px 0 60px;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .intro h1 {
+                letter-spacing: -1px;
+            }
+
+            .contact-form {
+                padding: 22px 18px;
+            }
+
+            .contact-info {
+                padding: 24px 20px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <header class="navbar">
+        <a href="index.html" class="logo">
+            school<span>system</span>
+        </a>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="aboutus.html">About Us</a>
+            <a href="portfolio.html">Portfolio</a>
+            <a href="contactus.html" class="active">Contact Us</a>
+        </nav>
+
+        <a href="login.html" class="login-btn">Log in</a>
+    </header>
+
+    <!-- CONTACT INTRO -->
+    <main class="contact-container">
+
+        <section class="intro">
+            <span class="tag">WE'RE HERE TO HELP</span>
+
+            <h1>
+                Let's start a <span>conversation.</span>
+            </h1>
+
+            <p>
+                Have a question or need assistance?
+                Send us a message and we'll be happy to help you.
+            </p>
+        </section>
+
+        <!-- CONTACT INFORMATION AND FORM -->
+        <section class="contact-grid">
+
+            <div class="contact-info">
+                <h2>Get in touch</h2>
+
+                <p class="info-description">
+                    We'd love to hear from you.
+                    Reach out using the information below.
+                </p>
+
+                <div class="info-item">
+                    <div class="info-icon">@</div>
+                    <div>
+                        <h3>Email us</h3>
+                        <p>support@schoolsystem.com</p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">☎</div>
+                    <div>
+                        <h3>Call us</h3>
+                        <p>+63 912 345 6789</p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">⌖</div>
+                    <div>
+                        <h3>Visit us</h3>
+                        <p>Philippines</p>
+                    </div>
+                </div>
+
+                <div class="help-note">
+                    <strong>Need help?</strong>
+                    <p>
+                        Fill out the form and tell us
+                        how we can assist you.
+                    </p>
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <h2>Send us a message</h2>
+
+                <p class="form-description">
+                    Fill in the details below.
+                </p>
+
+                <form action="#" method="post">
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Full name</label>
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                placeholder="Your full name"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email address</label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="you@example.com"
+                                required
+                            >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input
+                            type="text"
+                            id="subject"
+                            name="subject"
+                            placeholder="How can we help?"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Your message</label>
+                        <textarea
+                            id="message"
+                            name="message"
+                            rows="5"
+                            placeholder="Write your message here..."
+                            required
+                        ></textarea>
+                    </div>
+
+                    <button type="submit" class="send-btn">
+                        Send message <span>→</span>
+                    </button>
+
+                    <p class="privacy-note">
+                        We respect your privacy and information.
+                    </p>
+
+                </form>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 School System. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
+```
